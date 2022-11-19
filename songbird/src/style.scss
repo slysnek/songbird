@@ -1,0 +1,208 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$background: rgb(32, 66, 116);
+$text: rgb(172, 189, 238);
+
+body{
+  background-image: url('./assets/images/florian-krumm-Bl9A2pSPxzk-unsplash.jpg');
+  background-size: auto;
+  background-position-x: center;
+  background-color: $background;
+  color: $text;
+  font-family: 'Raleway';
+  font-size: 2em;
+  font-weight: 600;
+}
+
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 120px;
+  background-color: $background;
+}
+
+nav{
+  width: 100%;
+}
+
+.nav-header{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+
+main{
+  margin: 100px 200px;
+  height: 100%;
+  display: flex;
+}
+
+/*audioplayer*/
+.audio-player-wrapper{
+  padding: 30px;
+  background-color: $background;
+  box-shadow: 0px 4px 3px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 1s;
+}
+
+.current-track-display{
+  height: 28px;
+}
+
+.progress-bar{
+  width: 100%;
+  height: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.progress{
+  background-color: green;
+  width: 0%;
+  height: 100%;
+}
+
+.time{
+  display: flex;
+  flex-direction: row;
+}
+
+.volume-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.volume-progress-bar{
+  width: 50%;
+  height: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.volume-progress{
+  width: 50%;
+  height: 10px;
+  background-color: orange;
+}
+
+.volume-button{
+  height: 32px;
+  width: 32px;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.volume-button:hover{
+  transform: scale(1.3);
+  transition-duration: 0.2s;
+}
+
+.on{
+  background-image: url(./assets/images/volume.svg);
+}
+
+.off{
+  background-image: url(./assets/images/volume-off.svg);
+}
+
+.player-buttons{
+  display: flex;
+  flex-direction: row;
+}
+
+.player-button{
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.player-button:hover{
+  transform: scale(1.3);
+  transition-duration: 0.2s;
+}
+
+.previous{
+  background-image: url(./assets/images/previous.svg);
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.next{
+  background-image: url(./assets/images/next.svg);
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.play{
+  background-position: center;
+  background-image: url(./assets/images/play.svg);
+  background-size: 32px;
+  background-repeat: no-repeat;
+}
+
+.pause{
+  background-position: center;
+  background-image: url(./assets/images/pause.svg);
+  background-size: 16px;
+  background-repeat: no-repeat;
+}
+
+footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  background-color: $background;
+}
+
+.rs-logo{
+  width: 100px;
+  height: 50px;
+}
+
+.git-logo{
+  width: 50px;
+  height: 50px;
+}
+
+@media screen and (max-width: 1919px) {
+  main{
+      margin: 60px 160px;
+  }
+}
+
+@media screen and (max-width: 1439px) {
+  main{
+      margin: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  main{
+      margin: 30px 10px;
+  }
+  body{
+    font-size: 1.3em;
+  }
+}
