@@ -6,7 +6,7 @@ const songsData = [
       genre: 'Action FPS',
       description: 'Battlefield 3 is a 2011 first-person shooter video game developed by DICE and published by Electronic Arts for Microsoft Windows, PlayStation 3 and Xbox 360. It is a direct sequel to 2005\'s Battlefield 2.',
       image: 'https://upload.wikimedia.org/wikipedia/en/6/69/Battlefield_3_Game_Cover.jpg',
-      audio: '/assets/music/action/battlefield3.mp3'
+      audio: './assets/music/action/battlefield3.mp3'
     },
     {
       id: 2,
@@ -14,7 +14,7 @@ const songsData = [
       genre: 'Action FPS',
       description: 'Doom is a 2016 first-person shooter game developed by id Software and published by Bethesda Softworks. It is the first major installment in the Doom series since 2004\'s Doom 3. Players take the role of an unnamed space marine, known as the "Doom Slayer", as he battles demonic forces from Hell that have been unleashed by the Union Aerospace Corporation within their energy-mining facility on Mars.',
       image: 'https://live.staticflickr.com/65535/49221158846_b0b69a58f1.jpg',
-      audio: '/assets/music/action/doom2016.mp3'
+      audio: './assets/music/action/doom2016.mp3'
     },
     {
       id: 3,
@@ -22,31 +22,31 @@ const songsData = [
       genre: 'Action FPS',
       description: 'Left 4 Dead 2 is a 2009 first-person shooter game developed and published by Valve. The sequel to Turtle Rock Studios\'s Left 4 Dead (2008) and the second game in the Left 4 Dead series',
       image: 'https://live.staticflickr.com//65535//48539007512_5029d2a9a0.jpg',
-      audio: '/assets/music/action/left4dead2.mp3'
+      audio: './assets/music/action/left4dead2.mp3'
     },
     {
       id: 4,
-      game: 'Козодой',
-      genre: 'Caprimulgus europaeus',
-      description: 'Козодой – неприметная птица, известная благодаря своему голосу. Песня козодоя звучит как монотонная трель похожая на тарахтение мотоцикла. Такое дребезжание слышно от заката до рассвета, его тональность, частота и громкость изменяются. ',
+      game: 'Borderlands 2',
+      genre: 'Action FPS',
+      description: 'Borderlands 2 is a 2012 first-person shooter video game developed by Gearbox Software and published by 2K Games. Taking place five years following the events of Borderlands (2009), the game is again set on the planet of Pandora.',
       image: 'https://live.staticflickr.com/65535/48456345286_dbc8530027.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC486956-190623_22.37h_nachtzwaluw_rechte%20heide_zang_ad%20_2ex_gezien_.mp3'
+      audio: './assets/music/action/borderlands2.mp3'
     },
     {
       id: 5,
-      game: 'Кукушка',
-      genre: 'Cuculus canorus',
-      description: 'Кукушку назвали так из-за особенностей ее песен. Звонкое «ку-ку» не спутать ни с какой другой птицей. Кукушки не строят гнезда, их потомство выращивают другие виды пернатых, которым кукушки подбрасывают свои яйца.',
+      game: 'Wolfenstein: The New Order',
+      genre: 'Action FPS',
+      description: 'Wolfenstein: The New Order is a 2014 action-adventure first-person shooter video game developed by MachineGames and published by Bethesda Softworks. It was released on 20 May 2014 for PlayStation 3, PlayStation 4, Windows, Xbox 360, and Xbox One.',
       image: 'https://live.staticflickr.com/65535/48377838151_e15f430ec1.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC501461-190616_08.13h_koekoek_brabantse%20biesbosch%20jantjesplaat_roep_1%20ex_ad%20m_ter%20plaatse%20zingend_gezien_.mp3'
+      audio: './assets/music/action/left4dead2.mp3'
     },
     {
       id: 6,
-      game: 'Синица',
-      genre: 'Parus major',
-      description: 'В щебетании синиц различают более 40 различных звуковых сочетаний. Поют они практически круглый год, немного затихая только зимой. Синицы настоящие санитары леса. Одна пара синиц в период гнездования оберегает от вредителей десятки деревьев.',
+      game: 'Team Fortress 2',
+      genre: 'Action FPS',
+      description: 'Team Fortress 2 is a 2007 multiplayer first-person shooter game developed and published by Valve Corporation. It is the sequel to the 1996 Team Fortress mod for Quake and its 1999 remake, Team Fortress Classic.',
       image: 'https://live.staticflickr.com//65535//49366042493_c48c81d58d.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/RFGQDPLDEC/XC518417-Kj%C3%B8ttmeis%20XC%20Helg%C3%B8ya%20Elias%20A.%20Ryberg20200108133922_079.mp3'
+      audio: './assets/music/action/tf2.mp3'
     }
   ],
   [

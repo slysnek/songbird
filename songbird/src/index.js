@@ -34,7 +34,7 @@ function getTracks(genre){
 /*   audioplayer.src = playlist[currentTrack].source; */
   let randomTrackNumber = Math.floor(Math.random() * 6);
   console.log(songsData[genre][randomTrackNumber].audio);
-  const trackSource = require(`.${songsData[genre][randomTrackNumber].audio}`)
+  const trackSource = require(`${songsData[genre][randomTrackNumber].audio}`)
   audioplayer.src = trackSource;
   audioplayer.volume = .5;
 }
@@ -58,7 +58,7 @@ function playAudio(){
       playButton.classList.add('pause');
 /*       currentTrackBackground() */
       audioplayer.play()
-      currentTrackDisplay.textContent = playlist[currentTrack].title;
+/*       currentTrackDisplay.textContent = playlist[currentTrack].title; */
   }
 }
 
@@ -71,7 +71,7 @@ function updateTrackTime(){
 }
 
 //переключение треков
-function nextTrack(){
+/* function nextTrack(){
   if(isPlay === true){
       currentTrackBackground()
   }
@@ -95,7 +95,7 @@ function previousTrack(){
   isPlay = false;
   audioplayer.src = playlist[currentTrack].source;
   playAudio();
-}
+} */
 // выделение трека
 function currentTrackBackground(){
   for(const track of document.querySelectorAll('li')){
@@ -137,9 +137,9 @@ volumeButton.addEventListener("click", () => {
 
 audioplayer.addEventListener('loadeddata', getAudioLength)
 playButton.addEventListener('click', playAudio)
-previousButton.addEventListener('click', previousTrack)
+/* previousButton.addEventListener('click', previousTrack)
 nextButton.addEventListener('click', nextTrack)
-audioplayer.addEventListener('ended', nextTrack)
+audioplayer.addEventListener('ended', nextTrack) */
 
 getTracks(0);
 updateTrackTime();
