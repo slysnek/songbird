@@ -1,6 +1,8 @@
 import "@babel/polyfill";
 import './index.html';
 import './style.scss';
+import songsData from "./songs-en";
+
 
 //аудиоплеер
 const audioplayer = document.querySelector('.audioplayer')
@@ -22,14 +24,18 @@ let isPlay = false;
 let currentTrack = 0;
 
 //добавление треков в плейлист (установка начальной громкости)
-function getTracks(){
-  playlist.forEach((track) => {
+function getTracks(genre){
+  songsData[genre].forEach((track) => {
       let li = document.createElement('li')
-      let trackName = track.title
+      let trackName = track.game
       li.textContent = trackName;
       trackList.append(li);
   })
-  audioplayer.src = playlist[currentTrack].source;
+/*   audioplayer.src = playlist[currentTrack].source; */
+  let randomTrackNumber = Math.floor(Math.random() * 6);
+  console.log(songsData[genre][randomTrackNumber].audio);
+  const trackSource = require(`.${songsData[genre][randomTrackNumber].audio}`)
+  audioplayer.src = trackSource;
   audioplayer.volume = .5;
 }
 
@@ -44,13 +50,13 @@ function playAudio(){
       audioplayer.pause();
       playButton.classList.remove('pause');
       playButton.classList.add('play');
-      currentTrackBackground()
+/*       currentTrackBackground() */
       isPlay = false;
   } else{
       isPlay = true;
       playButton.classList.remove('play');
       playButton.classList.add('pause');
-      currentTrackBackground()
+/*       currentTrackBackground() */
       audioplayer.play()
       currentTrackDisplay.textContent = playlist[currentTrack].title;
   }
@@ -93,7 +99,7 @@ function previousTrack(){
 // выделение трека
 function currentTrackBackground(){
   for(const track of document.querySelectorAll('li')){
-      if (track.textContent.includes(playlist[currentTrack].title)){
+      if (track.textContent.includes(songsData[genre][randomTrackNumber].game)){
           track.classList.toggle('current-track')
       }
   }
@@ -135,5 +141,5 @@ previousButton.addEventListener('click', previousTrack)
 nextButton.addEventListener('click', nextTrack)
 audioplayer.addEventListener('ended', nextTrack)
 
-getTracks();
-updateTrackTime()
+getTracks(0);
+updateTrackTime();
