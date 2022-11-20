@@ -4,9 +4,9 @@ import './style.scss';
 import songsData from "./songs-en";
 import gameLayout from "./assets/components/game.html"
 
-/* const main = document.querySelector('main')
+const main = document.querySelector('main')
 
-main.innerHTML=gameLayout; */
+main.innerHTML=gameLayout;
 
 //аудиоплеер
 const audioplayer = document.querySelector('.audioplayer')
