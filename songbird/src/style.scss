@@ -8,10 +8,14 @@ $background: rgb(32, 66, 116);
 $text: rgb(172, 189, 238);
 
 body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-image: url('./assets/images/florian-krumm-Bl9A2pSPxzk-unsplash.jpg');
   background-size: auto;
   background-position-x: center;
   background-color: $background;
+  height: 100vh;
   color: $text;
   font-family: 'Raleway';
   font-size: 2em;
@@ -44,7 +48,6 @@ nav{
 
 main{
   margin: 100px 200px;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -75,7 +78,7 @@ main{
   display: flex;
 }
 
-.games-list{
+.games-list-wrapper{
   width: 50%;
   background-color: $background;
   box-shadow: 0px 4px 3px black;
@@ -202,6 +205,14 @@ main{
   background-image: url(./assets/images/pause.svg);
   background-size: 16px;
   background-repeat: no-repeat;
+}
+
+.next-level{
+  border: none;
+  font-family: 'Raleway';
+  background-color: $background;
+  color: $text;
+  font-size: 1.5em;
 }
 
 footer{

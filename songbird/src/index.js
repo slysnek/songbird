@@ -7,10 +7,10 @@ import songsData from "./songs-en";
 //аудиоплеер
 const audioplayer = document.querySelector('.audioplayer')
 const playButton = document.querySelector('.start-track')
-const trackList = document.querySelector('.track-list')
-const currentTrackDisplay =document.querySelector('.current-track-display')
+/* const trackList = document.querySelector('.track-list') */
+/* const currentTrackDisplay =document.querySelector('.current-track-display')
 const previousButton = document.querySelector('.previous');
-const nextButton = document.querySelector('.next');
+const nextButton = document.querySelector('.next'); */
 const progressBar = document.querySelector('.progress-bar')
 const progress = document.querySelector('.progress')
 const length = document.querySelector('.length')
@@ -18,6 +18,8 @@ const currentTimeDisplay = document.querySelector('.current-time')
 const volumeProgressBar = document.querySelector('.volume-progress-bar')
 const volumeProgress = document.querySelector('.volume-progress')
 const volumeButton = document.querySelector('.volume-button')
+
+const gamesList = document.querySelector('.games-list')
 
 //аудиоплеер
 let isPlay = false;
@@ -29,7 +31,7 @@ function getTracks(genre){
       let li = document.createElement('li')
       let trackName = track.game
       li.textContent = trackName;
-      trackList.append(li);
+      gamesList.append(li);
   })
 /*   audioplayer.src = playlist[currentTrack].source; */
   let randomTrackNumber = Math.floor(Math.random() * 6);
