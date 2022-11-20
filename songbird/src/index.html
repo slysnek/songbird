@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
     <title>Songbird</title>
   </head>
   <body>
@@ -16,51 +19,11 @@
         </ul>
       </nav>
     </header>
-    <main>
-      <div class="genres-container">
-        <ul class="genres-list">
-          <li>Action</li>
-          <li>Platformers</li>
-          <li>Racing</li>
-          <li>RPG</li>
-          <li>Fighting</li>
-          <li>Sandbox</li>
-        </ul>
+    <main class="main">
+      <div class="main-menu">
+        <button class="start-game menu-button">Start Game</button>
+        <button class="language menu-button">Language</button>
       </div>
-      <div class="audio-player-wrapper slow">
-        <audio class="audioplayer"></audio>
-        <div class="current-track-display"></div>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-        <div class="time">
-            <div class="current-time">0:00</div>
-            <span>/</span>
-            <div class="length"></div>
-        </div>
-        <div class="volume-container">
-            <div class="volume-progress-bar">
-                <div class="volume-progress"></div>
-            </div>
-            <div class="volume-button on"></div>
-        </div>
-        <ul class="track-list"></ul>
-        <div class="player-buttons">
-<!--             <div class="previous player-button"></div> -->
-            <div class="start-track play player-button"></div>
-<!--             <div class="next player-button"></div> -->
-        </div>
-    </div>
-    <div class="game-main-menu">
-      <div class="games-list-wrapper">
-        <ul class="games-list">
-        </ul>
-      </div>
-      <div class="game-description">
-        Listen to the music and choose the game from the list you think the song is from!
-      </div>
-    </div>
-    <button class="next-level">Next</button>
     </main>
     <footer>
       <a href="https://rs.school/js/"
@@ -69,13 +32,13 @@
           src="./assets/images/rs_school_js.svg"
           alt="rs logo"
       /></a>
-      <h3>2022</h3>
       <a href="https://github.com/slysnek"
         ><img
           class="git-logo"
           src="./assets/images/GitHub-Mark-64px.png"
           alt="git logo"
       /></a>
+      <h3>2022</h3>
     </footer>
   </body>
 </html>

@@ -17,8 +17,8 @@ body{
   background-color: $background;
   height: 100vh;
   color: $text;
-  font-family: 'Raleway';
-  font-size: 2em;
+  font-family:'Michroma';
+  font-size: 1.5em;
   font-weight: 600;
 }
 
@@ -50,6 +50,7 @@ main{
   margin: 100px 200px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .genres-container{
@@ -209,10 +210,29 @@ main{
 
 .next-level{
   border: none;
-  font-family: 'Raleway';
+  font-family: 'Michroma';
   background-color: $background;
   color: $text;
   font-size: 1.5em;
+}
+
+.main-menu{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  max-width: 320px;
+}
+
+.menu-button{
+  border: none;
+  font-family: 'Michroma';
+  background-color: $background;
+  color: $text;
+  font-size: 1.2em;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0px 0px 12px rgb(209, 50, 50);
 }
 
 footer{
