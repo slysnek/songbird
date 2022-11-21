@@ -3,7 +3,7 @@ import './index.html';
 import './style.scss';
 import songsData from "./songs-en";
 import gameLayout from "./assets/components/game.html"
-import audioplayer from "./assets/components/audioplayer.html"
+import player from "./assets/components/audioplayer.html"
 import menu from "./assets/components/menu.html"
 
 let scoreCounter = 0;
@@ -27,6 +27,7 @@ main.innerHTML=gameLayout;
 let randomTrackNumber;
 let trackSourceId;
 let currentGenre = 0;
+let currentScore = 5;
 let isSolved = false;
 const nextLevelButton = document.querySelector('.next-level')
 
@@ -207,6 +208,9 @@ function isRightTrack(id){
     nextLevelButton.classList.add('next-level-active')
     const hiddenGameImage = document.querySelector('.hidden-game-image');
     hiddenGameImage.src = songsData[currentGenre][id-1].image
+    scoreCounter += currentScore;
+    const score = document.querySelector('.score')
+    score.textContent = scoreCounter
   } else{
     console.log('you are not');
     if(!isSolved){
@@ -219,7 +223,7 @@ function isRightTrack(id){
       negativeSound.src = require('./assets/sounds/pos.wav')
       negativeSound.play()
     }
-
+    currentScore--;
   }
 }
 
@@ -236,7 +240,135 @@ function addDescription(id){
   descriptionGenre.textContent = songsData[currentGenre][id-1].genre
   descriptionWrapper.appendChild(descriptionImage)
   descriptionWrapper.appendChild(descriptionGenre)
+  addPlayertoDesc(id)
   descriptionWrapper.appendChild(description)
+}
+
+function addPlayertoDesc(id){
+  const descriptionWrapper = document.querySelector('.game-description');
+  const audioplayerWrapper = document.createElement('div')
+  audioplayerWrapper.classList.add('description-player')
+  audioplayerWrapper.innerHTML = player
+  descriptionWrapper.appendChild(audioplayerWrapper)
+
+  //аудиоплеер
+  const audioplayer = document.querySelector('.description-player .audioplayer')
+  const playButton = document.querySelector('.description-player .start-track')
+  /* const trackList = document.querySelector('.track-list') */
+  /* const currentTrackDisplay =document.querySelector('.current-track-display')
+  const previousButton = document.querySelector('.previous');
+  const nextButton = document.querySelector('.next'); */
+  const progressBar = document.querySelector('.description-player .progress-bar')
+  const progress = document.querySelector('.description-player .progress')
+  const length = document.querySelector('.description-player .length')
+  const currentTimeDisplay = document.querySelector('.description-player .current-time')
+  const volumeProgressBar = document.querySelector('.description-player .volume-progress-bar')
+  const volumeProgress = document.querySelector('.description-player .volume-progress')
+  const volumeButton = document.querySelector('.description-player .volume-button')
+
+  //показ длительности трека
+function getAudioLength(){
+  length.textContent = getTimeCode(audioplayer.duration);
+}
+
+//воспроизведение треков
+function playAudio(){
+  if(isPlay === true){
+      audioplayer.pause();
+      playButton.classList.remove('pause');
+      playButton.classList.add('play');
+/*       currentTrackBackground() */
+      isPlay = false;
+  } else{
+      isPlay = true;
+      playButton.classList.remove('play');
+      playButton.classList.add('pause');
+/*       currentTrackBackground() */
+      audioplayer.play()
+/*       currentTrackDisplay.textContent = playlist[currentTrack].title; */
+  }
+}
+
+//обновление времени трека
+function updateTrackTime(){
+  setInterval(() =>{
+      progress.style.width = audioplayer.currentTime / audioplayer.duration * 100 + '%';
+      currentTimeDisplay.textContent = getTimeCode(audioplayer.currentTime)
+  }, 500)
+}
+
+//переключение треков
+/* function nextTrack(){
+  if(isPlay === true){
+      currentTrackBackground()
+  }
+  currentTrack++;
+  if(currentTrack > playlist.length - 1){
+      currentTrack = 0;
+  }
+  isPlay = false;
+  audioplayer.src = playlist[currentTrack].source;
+  playAudio();
+}
+
+function previousTrack(){
+  if(isPlay === true){
+      currentTrackBackground()
+  }
+  currentTrack--;
+  if(currentTrack < 0){
+      currentTrack = playlist.length - 1;
+  }
+  isPlay = false;
+  audioplayer.src = playlist[currentTrack].source;
+  playAudio();
+} */
+// выделение трека
+function currentTrackBackground(){
+  for(const track of document.querySelectorAll('li')){
+      if (track.textContent.includes(songsData[genre][randomTrackNumber].game)){
+          track.classList.toggle('current-track')
+      }
+  }
+}
+//прогресс бар
+progressBar.addEventListener("click", el => {
+const progressBarWidth = window.getComputedStyle(progressBar).width;
+const timeToSeek = el.offsetX / parseInt(progressBarWidth) * audioplayer.duration;
+audioplayer.currentTime = timeToSeek;
+progress.style.width = audioplayer.currentTime / audioplayer.duration * 100 + "%";
+}, false);
+//получение тайм-кода
+function getTimeCode(trackDuration){
+  let seconds = Math.floor(trackDuration);
+  let minutes = Math.floor(seconds / 60);
+  seconds = seconds - minutes * 60;
+  return `${minutes}:${String(seconds).padStart(2,0)}`
+}
+//обновление звука
+volumeProgressBar.addEventListener("click", el =>{
+  const volumeProgressBarWidth = window.getComputedStyle(volumeProgressBar).width;
+  const newVolume = el.offsetX / parseInt(volumeProgressBarWidth);
+  audioplayer.volume = newVolume;
+  volumeProgress.style.width = newVolume * 100 + '%';
+})
+//мьют звука
+volumeButton.addEventListener("click", () => {
+  audioplayer.muted = !audioplayer.muted;
+  if(audioplayer.muted){
+      volumeButton.classList.toggle('off')
+  }else{
+      volumeButton.classList.toggle('off')
+  }
+})
+
+audioplayer.addEventListener('loadeddata', getAudioLength)
+playButton.addEventListener('click', playAudio)
+/* previousButton.addEventListener('click', previousTrack)
+nextButton.addEventListener('click', nextTrack)
+audioplayer.addEventListener('ended', nextTrack) */
+
+audioplayer.src = require(`${songsData[currentGenre][id-1].audio}`)
 }
 
 }
