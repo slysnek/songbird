@@ -5,6 +5,7 @@ import songsData from "./songs-en";
 import gameLayout from "./assets/components/game.html"
 import player from "./assets/components/audioplayer.html"
 import menu from "./assets/components/menu.html"
+import results from "./assets/components/results.html"
 
 let scoreCounter = 0;
 let randomTrackNumber;
@@ -24,11 +25,27 @@ addMenu()
 const mainMenuButton = document.querySelector('.main-menu-button')
 const startGame = document.querySelector('.start-game')
 
-
+function displayResults(){
+  main.innerHTML = results;
+  const finalScore = document.querySelector('.final-score')
+  const tryAgain = document.querySelector('.try-again')
+  finalScore.textContent = scoreCounter;
+  tryAgain.addEventListener('click', ()=>{
+    currentGenre = -1;
+    scoreCounter = 0;
+    initializeGame()
+  })
+}
 
 function initializeGame(){
-
+isSolved=false
 currentGenre++
+console.log(currentGenre);
+if(currentGenre>5){
+  displayResults()
+  return
+}
+currentScore = 5;
 
 main.innerHTML=gameLayout;
 const nextLevelButton = document.querySelector('.next-level')
@@ -205,7 +222,6 @@ function isRightTrack(id){
         allTracks[i].classList.add('right')
       }
     }
-    isSolved = true;
     let positiveSound = new Audio();
     positiveSound.src = require('./assets/sounds/neg.wav')
     positiveSound.play()
@@ -213,9 +229,12 @@ function isRightTrack(id){
     nextLevelButton.classList.add('next-level-active')
     const hiddenGameImage = document.querySelector('.hidden-game-image');
     hiddenGameImage.src = songsData[currentGenre][id-1].image
-    scoreCounter += currentScore;
-    const score = document.querySelector('.score')
-    score.textContent = scoreCounter
+    if(!isSolved){
+      scoreCounter += currentScore;
+      const score = document.querySelector('.score')
+      score.textContent = scoreCounter
+    }
+    isSolved = true;
   } else{
     console.log('you are not');
     if(!isSolved){
