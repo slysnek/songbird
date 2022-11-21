@@ -76,18 +76,24 @@ main{
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
   list-style-type: none;
+}
+
+.genres-list-item{
+  padding: 10px;
 }
 
 .game-main-menu{
   display: flex;
+  gap: 6px;
   flex-direction: row;
   margin: 20px 0px;
 }
 
 .game-description{
-  padding: 10px;
+  padding: 20px;
   width: 50%;
   background-color: $background;
   box-shadow: 0px 4px 3px black;
@@ -107,7 +113,7 @@ main{
 }
 
 .games-list{
-  padding: 12px;
+  padding: 20px;
 }
 
 /*audioplayer*/
@@ -253,6 +259,11 @@ main{
   border: 1px solid rgb(209, 50, 50);
 }
 
+.next-level-active:hover{
+  box-shadow: 0px 0px 12px rgb(8, 119, 32);
+  border: 1px solid rgb(8, 119, 32);
+}
+
 .main-menu{
   display: flex;
   flex-direction: column;
@@ -309,9 +320,17 @@ footer{
   background-color: $background;
 }
 
+.border-bottom{
+  border-bottom: 2px solid $text;
+}
+
 .description-image{
   height: 200px;
   width: 120px;
+}
+
+.hidden-track-name{
+  padding: 10px;
 }
 
 .rs-logo{

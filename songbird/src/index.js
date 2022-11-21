@@ -30,6 +30,9 @@ let currentGenre = 0;
 let isSolved = false;
 const nextLevelButton = document.querySelector('.next-level')
 
+const genreItems = document.querySelectorAll('.genres-list-item');
+genreItems[currentGenre].classList.add('current')
+
 nextLevelButton.disabled = true;
 
   //аудиоплеер
@@ -201,6 +204,7 @@ function isRightTrack(id){
     positiveSound.src = require('./assets/sounds/neg.wav')
     positiveSound.play()
     nextLevelButton.disabled = false;
+    nextLevelButton.classList.add('next-level-active')
     const hiddenGameImage = document.querySelector('.hidden-game-image');
     hiddenGameImage.src = songsData[currentGenre][id-1].image
   } else{
@@ -223,6 +227,7 @@ function addDescription(id){
   const descriptionWrapper = document.querySelector('.game-description');
   const descriptionImage = document.createElement('img');
   const descriptionGenre = document.createElement('p')
+  descriptionGenre.classList.add('border-bottom')
   const description = document.createElement('p')
   descriptionImage.src = songsData[currentGenre][id-1].image
   descriptionImage.classList.add('description-image')
