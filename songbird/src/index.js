@@ -222,9 +222,11 @@ function isRightTrack(id){
         allTracks[i].classList.add('right')
       }
     }
+    if(!isSolved){
     let positiveSound = new Audio();
     positiveSound.src = require('./assets/sounds/neg.wav')
     positiveSound.play()
+  }
     nextLevelButton.disabled = false;
     nextLevelButton.classList.add('next-level-active')
     const hiddenGameImage = document.querySelector('.hidden-game-image');
@@ -235,6 +237,7 @@ function isRightTrack(id){
       score.textContent = scoreCounter
     }
     isSolved = true;
+    playAudio()
   } else{
     console.log('you are not');
     if(!isSolved){
@@ -254,15 +257,19 @@ function isRightTrack(id){
 function addDescription(id){
   const descriptionWrapper = document.querySelector('.game-description');
   const descriptionImage = document.createElement('img');
+  const descriptionName = document.createElement('p')
   const descriptionGenre = document.createElement('p')
   descriptionGenre.classList.add('border-bottom')
+  descriptionName.classList.add('border-bottom')
   const description = document.createElement('p')
   descriptionImage.src = songsData[currentGenre][id-1].image
   descriptionImage.classList.add('description-image')
   description.textContent = songsData[currentGenre][id-1].description
   descriptionWrapper.innerHTML = ''
   descriptionGenre.textContent = songsData[currentGenre][id-1].genre
+  descriptionName.textContent = songsData[currentGenre][id-1].game
   descriptionWrapper.appendChild(descriptionImage)
+  descriptionWrapper.appendChild(descriptionName)
   descriptionWrapper.appendChild(descriptionGenre)
   addPlayertoDesc(id)
   descriptionWrapper.appendChild(description)
