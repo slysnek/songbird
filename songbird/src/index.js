@@ -3,12 +3,27 @@ import './index.html';
 import './style.scss';
 import songsData from "./songs-en";
 import gameLayout from "./assets/components/game.html"
+import audioplayer from "./assets/components/audioplayer.html"
+import menu from "./assets/components/menu.html"
 
-const main = document.querySelector('main')
+let scoreCounter = 0;
 
-main.innerHTML=gameLayout;
+const main = document.querySelector('main');
+//добавляем меню
+function addMenu(){
+  main.innerHTML=menu;
+}
 
-//аудиоплеер
+addMenu()
+
+const mainMenuButton = document.querySelector('.main-menu-button')
+const startGame = document.querySelector('.start-game')
+
+
+
+function initializeGame(){
+  main.innerHTML=gameLayout;
+  //аудиоплеер
 const audioplayer = document.querySelector('.audioplayer')
 const playButton = document.querySelector('.start-track')
 /* const trackList = document.querySelector('.track-list') */
@@ -149,3 +164,17 @@ audioplayer.addEventListener('ended', nextTrack) */
 
 getTracks(0);
 updateTrackTime();
+}
+
+function returnToMenu(){
+  const score = document.querySelector('.score')
+  scoreCounter = 0;
+  if(score){
+    score.textContent = 0;
+  }
+  main.innerHTML=menu;
+}
+
+//меню
+startGame.addEventListener('click', initializeGame)
+mainMenuButton.addEventListener('click', returnToMenu)
