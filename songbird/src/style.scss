@@ -326,6 +326,12 @@ footer{
   border-bottom: 2px solid $text;
 }
 
+.games-border{
+  border-bottom: 1px solid $text;
+  border-top: 1px solid $text;
+  list-style-type: none;
+}
+
 .description-image{
   height: 200px;
   width: 120px;

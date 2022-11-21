@@ -23,10 +23,12 @@ function addMenu() {
 addMenu()
 
 const mainMenuButton = document.querySelector('.main-menu-button')
+const galleryButton = document.querySelector('.gallery-button')
 const startGame = document.querySelector('.start-game')
 //меню
 startGame.addEventListener('click', initializeGame)
 mainMenuButton.addEventListener('click', returnToMenu)
+galleryButton.addEventListener('click', showGallery)
 
 const languageButton = document.querySelector('.language');
 languageButton.addEventListener('click', () => {
@@ -39,6 +41,11 @@ function changeLanguage() {
   } else {
     language = 'en'
   }
+  alert('work in progress! please check this feature later :)')
+}
+
+function showGallery(){
+  alert('work in progress! please check this feature later :)')
 }
 
 function displayResults() {
@@ -96,6 +103,7 @@ function initializeGame() {
       li.textContent = trackName;
       li.classList.add(`track-id-${track.id}`)
       li.classList.add('track')
+      li.classList.add('games-border')
       gamesList.append(li);
       li.addEventListener('click', () => {
         isRightTrack(track.id)
