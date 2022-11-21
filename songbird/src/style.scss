@@ -267,7 +267,7 @@ main{
 .menu-button:hover{
   transform: scale(1.05);
   transition: 0.1s;
-  border: 1px solid rgb(209, 50, 50); ;
+  border: 1px solid rgb(209, 50, 50);
 }
 
 footer{
@@ -284,7 +284,19 @@ footer{
 }
 
 .track:hover{
-  background-color: rgb(55, 102, 173);;
+  background-color: rgb(55, 102, 173);
+}
+
+.wrong{
+  background-color: rgb(158, 26, 26);
+}
+
+.right{
+  background-color: rgb(8, 119, 32);
+}
+
+.current{
+  background-color: $background;
 }
 
 .rs-logo{

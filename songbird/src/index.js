@@ -184,24 +184,33 @@ updateTrackTime();
 
 
 function isRightTrack(id){
-  console.log(id);
+  const allTracks = document.querySelectorAll('.track')
   if (id === trackSourceId){
     console.log('you are right');
+    for (let i = 0; i < allTracks.length; i++) {
+      if(id-1 === i){
+        allTracks[i].classList.add('right')
+      }
+    }
     let positiveSound = new Audio();
-    positiveSound.src = require('./assets/sounds/pos.wav')
+    positiveSound.src = require('./assets/sounds/neg.wav')
     positiveSound.play()
     nextLevelButton.disabled = false;
     const hiddenGameImage = document.querySelector('.hidden-game-image');
     hiddenGameImage.src = songsData[currentGenre][id-1].image
   } else{
     console.log('you are not');
+    for (let i = 0; i < allTracks.length; i++) {
+      if(id-1 === i){
+        allTracks[i].classList.add('wrong')
+      }
+    }
     let negativeSound = new Audio();
-    negativeSound.src = require('./assets/sounds/neg.wav')
+    negativeSound.src = require('./assets/sounds/pos.wav')
     negativeSound.play()
   }
 }
 
-nextLevelButton.addEventListener('click', nextLevel)
 
 }
 
