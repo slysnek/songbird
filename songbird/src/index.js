@@ -27,6 +27,7 @@ main.innerHTML=gameLayout;
 let randomTrackNumber;
 let trackSourceId;
 let currentGenre = 0;
+let isSolved = false;
 const nextLevelButton = document.querySelector('.next-level')
 
 nextLevelButton.disabled = true;
@@ -185,13 +186,17 @@ updateTrackTime();
 
 function isRightTrack(id){
   const allTracks = document.querySelectorAll('.track')
+  addDescription(id)
   if (id === trackSourceId){
     console.log('you are right');
+    const hiddenTrackName = document.querySelector('.hidden-track-name')
+    hiddenTrackName.textContent = songsData[currentGenre][id-1].game
     for (let i = 0; i < allTracks.length; i++) {
       if(id-1 === i){
         allTracks[i].classList.add('right')
       }
     }
+    isSolved = true;
     let positiveSound = new Audio();
     positiveSound.src = require('./assets/sounds/neg.wav')
     positiveSound.play()
@@ -200,17 +205,34 @@ function isRightTrack(id){
     hiddenGameImage.src = songsData[currentGenre][id-1].image
   } else{
     console.log('you are not');
-    for (let i = 0; i < allTracks.length; i++) {
-      if(id-1 === i){
-        allTracks[i].classList.add('wrong')
+    if(!isSolved){
+      for (let i = 0; i < allTracks.length; i++) {
+        if(id-1 === i){
+          allTracks[i].classList.add('wrong')
+        }
       }
+      let negativeSound = new Audio();
+      negativeSound.src = require('./assets/sounds/pos.wav')
+      negativeSound.play()
     }
-    let negativeSound = new Audio();
-    negativeSound.src = require('./assets/sounds/pos.wav')
-    negativeSound.play()
+
   }
 }
 
+function addDescription(id){
+  const descriptionWrapper = document.querySelector('.game-description');
+  const descriptionImage = document.createElement('img');
+  const descriptionGenre = document.createElement('p')
+  const description = document.createElement('p')
+  descriptionImage.src = songsData[currentGenre][id-1].image
+  descriptionImage.classList.add('description-image')
+  description.textContent = songsData[currentGenre][id-1].description
+  descriptionWrapper.innerHTML = ''
+  descriptionGenre.textContent = songsData[currentGenre][id-1].genre
+  descriptionWrapper.appendChild(descriptionImage)
+  descriptionWrapper.appendChild(descriptionGenre)
+  descriptionWrapper.appendChild(description)
+}
 
 }
 

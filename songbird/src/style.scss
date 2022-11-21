@@ -23,6 +23,7 @@ body{
 }
 
 header{
+  padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -86,19 +87,27 @@ main{
 }
 
 .game-description{
-  width: 50%;
-  background-color: $background;
-  box-shadow: 0px 4px 3px black;
-  display: flex;
-}
-
-.games-list-wrapper{
+  padding: 10px;
   width: 50%;
   background-color: $background;
   box-shadow: 0px 4px 3px black;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.games-list-wrapper{
+  padding: 10px;
+  width: 50%;
+  background-color: $background;
+  box-shadow: 0px 4px 3px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.games-list{
+  padding: 12px;
 }
 
 /*audioplayer*/
@@ -271,6 +280,7 @@ main{
 }
 
 footer{
+  padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -297,6 +307,11 @@ footer{
 
 .current{
   background-color: $background;
+}
+
+.description-image{
+  height: 200px;
+  width: 120px;
 }
 
 .rs-logo{
@@ -326,6 +341,6 @@ footer{
       margin: 30px 10px;
   }
   body{
-    font-size: 1.3em;
+    font-size: 1em;
   }
 }
