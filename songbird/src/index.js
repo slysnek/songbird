@@ -7,6 +7,11 @@ import player from "./assets/components/audioplayer.html"
 import menu from "./assets/components/menu.html"
 
 let scoreCounter = 0;
+let randomTrackNumber;
+let trackSourceId;
+let currentGenre = -1;
+let currentScore = 5;
+let isSolved = false;
 
 const main = document.querySelector('main');
 //добавляем меню
@@ -23,13 +28,13 @@ const startGame = document.querySelector('.start-game')
 
 function initializeGame(){
 
+currentGenre++
+
 main.innerHTML=gameLayout;
-let randomTrackNumber;
-let trackSourceId;
-let currentGenre = 0;
-let currentScore = 5;
-let isSolved = false;
 const nextLevelButton = document.querySelector('.next-level')
+
+const score = document.querySelector('.score')
+score.textContent = scoreCounter
 
 const genreItems = document.querySelectorAll('.genres-list-item');
 genreItems[currentGenre].classList.add('current')
@@ -372,6 +377,8 @@ audioplayer.addEventListener('ended', nextTrack) */
 audioplayer.src = require(`${songsData[currentGenre][id-1].audio}`)
 updateTrackTime();
 }
+
+nextLevelButton.addEventListener('click', initializeGame)
 
 }
 
