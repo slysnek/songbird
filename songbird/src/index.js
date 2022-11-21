@@ -266,6 +266,7 @@ function addPlayertoDesc(id){
   const volumeProgress = document.querySelector('.description-player .volume-progress')
   const volumeButton = document.querySelector('.description-player .volume-button')
 
+  let isPlay = false;
   //показ длительности трека
 function getAudioLength(){
   length.textContent = getTimeCode(audioplayer.duration);
@@ -369,6 +370,7 @@ nextButton.addEventListener('click', nextTrack)
 audioplayer.addEventListener('ended', nextTrack) */
 
 audioplayer.src = require(`${songsData[currentGenre][id-1].audio}`)
+updateTrackTime();
 }
 
 }
