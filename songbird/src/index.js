@@ -46,6 +46,7 @@ function changeLanguage() {
 
 function showGallery(){
   alert('work in progress! please check this feature later :)')
+/*   main.innerHTML = ''; */
 }
 
 function displayResults() {
@@ -338,6 +339,7 @@ function initializeGame() {
 function returnToMenu() {
   const score = document.querySelector('.score')
   scoreCounter = 0;
+  currentGenre = -1;
   if (score) {
     score.textContent = 0;
   }
