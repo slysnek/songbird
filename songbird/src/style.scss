@@ -102,6 +102,11 @@ main{
 }
 
 /*audioplayer*/
+.hidden-game-image{
+  width: 200px;
+  height: 300px;
+}
+
 .audio-player-wrapper{
   padding: 30px;
   background-color: $background;
@@ -272,6 +277,14 @@ footer{
   align-items: center;
   height: 100px;
   background-color: $background;
+}
+
+.track{
+  cursor: pointer;
+}
+
+.track:hover{
+  background-color: rgb(55, 102, 173);;
 }
 
 .rs-logo{

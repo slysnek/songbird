@@ -13,7 +13,7 @@ const songsData = [
       game: 'Doom 2016',
       genre: 'Action FPS',
       description: 'Doom is a 2016 first-person shooter game developed by id Software and published by Bethesda Softworks. It is the first major installment in the Doom series since 2004\'s Doom 3. Players take the role of an unnamed space marine, known as the "Doom Slayer", as he battles demonic forces from Hell that have been unleashed by the Union Aerospace Corporation within their energy-mining facility on Mars.',
-      image: 'https://live.staticflickr.com/65535/49221158846_b0b69a58f1.jpg',
+      image: 'https://upload.wikimedia.org/wikipedia/en/2/28/Doom_Cover.jpg',
       audio: './assets/music/action/doom2016.mp3'
     },
     {
@@ -21,7 +21,7 @@ const songsData = [
       game: 'Left 4 Dead 2',
       genre: 'Action FPS',
       description: 'Left 4 Dead 2 is a 2009 first-person shooter game developed and published by Valve. The sequel to Turtle Rock Studios\'s Left 4 Dead (2008) and the second game in the Left 4 Dead series',
-      image: 'https://live.staticflickr.com//65535//48539007512_5029d2a9a0.jpg',
+      image: 'https://upload.wikimedia.org/wikipedia/en/b/ba/Left4Dead2.jpg',
       audio: './assets/music/action/left4dead2.mp3'
     },
     {
@@ -29,7 +29,7 @@ const songsData = [
       game: 'Borderlands 2',
       genre: 'Action FPS',
       description: 'Borderlands 2 is a 2012 first-person shooter video game developed by Gearbox Software and published by 2K Games. Taking place five years following the events of Borderlands (2009), the game is again set on the planet of Pandora.',
-      image: 'https://live.staticflickr.com/65535/48456345286_dbc8530027.jpg',
+      image: 'https://upload.wikimedia.org/wikipedia/en/5/51/Borderlands_2_cover_art.png',
       audio: './assets/music/action/borderlands2.mp3'
     },
     {
@@ -37,15 +37,15 @@ const songsData = [
       game: 'Wolfenstein: The New Order',
       genre: 'Action FPS',
       description: 'Wolfenstein: The New Order is a 2014 action-adventure first-person shooter video game developed by MachineGames and published by Bethesda Softworks. It was released on 20 May 2014 for PlayStation 3, PlayStation 4, Windows, Xbox 360, and Xbox One.',
-      image: 'https://live.staticflickr.com/65535/48377838151_e15f430ec1.jpg',
-      audio: './assets/music/action/left4dead2.mp3'
+      image: 'https://upload.wikimedia.org/wikipedia/en/9/95/Wolfenstein_The_New_Order_cover.jpg',
+      audio: './assets/music/action/wolfenstein-theneworder.mp3'
     },
     {
       id: 6,
       game: 'Team Fortress 2',
       genre: 'Action FPS',
       description: 'Team Fortress 2 is a 2007 multiplayer first-person shooter game developed and published by Valve Corporation. It is the sequel to the 1996 Team Fortress mod for Quake and its 1999 remake, Team Fortress Classic.',
-      image: 'https://live.staticflickr.com//65535//49366042493_c48c81d58d.jpg',
+      image: 'https://upload.wikimedia.org/wikipedia/en/5/5f/Tf2_standalonebox.jpg',
       audio: './assets/music/action/tf2.mp3'
     }
   ],

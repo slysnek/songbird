@@ -22,7 +22,15 @@ const startGame = document.querySelector('.start-game')
 
 
 function initializeGame(){
-  main.innerHTML=gameLayout;
+
+main.innerHTML=gameLayout;
+let randomTrackNumber;
+let trackSourceId;
+let currentGenre = 0;
+const nextLevelButton = document.querySelector('.next-level')
+
+nextLevelButton.disabled = true;
+
   //аудиоплеер
 const audioplayer = document.querySelector('.audioplayer')
 const playButton = document.querySelector('.start-track')
@@ -38,24 +46,30 @@ const volumeProgressBar = document.querySelector('.volume-progress-bar')
 const volumeProgress = document.querySelector('.volume-progress')
 const volumeButton = document.querySelector('.volume-button')
 
-const gamesList = document.querySelector('.games-list')
-
 //аудиоплеер
 let isPlay = false;
 let currentTrack = 0;
 
-//добавление треков в плейлист (установка начальной громкости)
+//добавление треков в меню выбора (установка начальной громкости)
 function getTracks(genre){
   songsData[genre].forEach((track) => {
       let li = document.createElement('li')
       let trackName = track.game
       li.textContent = trackName;
+      li.classList.add(`track-id-${track.id}`)
+      li.classList.add('track')
       gamesList.append(li);
+      li.addEventListener('click', () => {
+        isRightTrack(track.id)
+      })
   })
 /*   audioplayer.src = playlist[currentTrack].source; */
-  let randomTrackNumber = Math.floor(Math.random() * 6);
+  randomTrackNumber = Math.floor(Math.random() * 6);
+  console.log(randomTrackNumber);
   console.log(songsData[genre][randomTrackNumber].audio);
   const trackSource = require(`${songsData[genre][randomTrackNumber].audio}`)
+  trackSourceId = songsData[genre][randomTrackNumber].id
+  console.log(trackSourceId);
   audioplayer.src = trackSource;
   audioplayer.volume = .5;
 }
@@ -162,8 +176,33 @@ playButton.addEventListener('click', playAudio)
 nextButton.addEventListener('click', nextTrack)
 audioplayer.addEventListener('ended', nextTrack) */
 
-getTracks(0);
+
+const gamesList = document.querySelector('.games-list')
+
+getTracks(currentGenre);
 updateTrackTime();
+
+
+function isRightTrack(id){
+  console.log(id);
+  if (id === trackSourceId){
+    console.log('you are right');
+    let positiveSound = new Audio();
+    positiveSound.src = require('./assets/sounds/pos.wav')
+    positiveSound.play()
+    nextLevelButton.disabled = false;
+    const hiddenGameImage = document.querySelector('.hidden-game-image');
+    hiddenGameImage.src = songsData[currentGenre][id-1].image
+  } else{
+    console.log('you are not');
+    let negativeSound = new Audio();
+    negativeSound.src = require('./assets/sounds/neg.wav')
+    negativeSound.play()
+  }
+}
+
+nextLevelButton.addEventListener('click', nextLevel)
+
 }
 
 function returnToMenu(){
@@ -173,8 +212,11 @@ function returnToMenu(){
     score.textContent = 0;
   }
   main.innerHTML=menu;
+  const startGame = document.querySelector('.start-game')
+  startGame.addEventListener('click', initializeGame)
 }
 
 //меню
 startGame.addEventListener('click', initializeGame)
 mainMenuButton.addEventListener('click', returnToMenu)
+
