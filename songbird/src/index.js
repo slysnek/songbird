@@ -1,7 +1,8 @@
 import "@babel/polyfill";
 import './index.html';
 import './style.scss';
-import songsData from "./songs-en";
+import songsDataEn from "./songs-en";
+import songsDataRu from "./songs-ru";
 import gameLayout from "./assets/components/game.html"
 import player from "./assets/components/audioplayer.html"
 import menu from "./assets/components/menu.html"
@@ -15,29 +16,6 @@ let currentScore = 5;
 let isSolved = false;
 let language = 'en'
 const main = document.querySelector('main');
-
-//добавляем меню
-function addMenu() {
-  main.innerHTML = menu;
-}
-addMenu()
-
-const mainMenuButton = document.querySelector('.main-menu-button')
-const galleryButton = document.querySelector('.gallery-button')
-const startGame = document.querySelector('.start-game')
-//меню
-startGame.addEventListener('click', ()=>{
-  initializeGame(language)
-})
-mainMenuButton.addEventListener('click', ()=>{
-  returnToMenu(language)
-})
-galleryButton.addEventListener('click', showGallery)
-
-const languageButton = document.querySelector('.language');
-languageButton.addEventListener('click', () => {
-  changeLanguage();
-})
 
 const translation = {
   en: {
@@ -61,6 +39,55 @@ const translation = {
     tryAgain: 'Попробовать снова?'
   } 
 }
+
+//добавляем меню
+function addMenu() {
+  main.innerHTML = menu;
+}
+addMenu()
+getLanguage()
+
+const mainMenuButton = document.querySelector('.main-menu-button')
+const galleryButton = document.querySelector('.gallery-button')
+const startGame = document.querySelector('.start-game')
+//меню
+startGame.addEventListener('click', ()=>{
+  initializeGame(language)
+})
+mainMenuButton.addEventListener('click', ()=>{
+  returnToMenu(language)
+})
+galleryButton.addEventListener('click', showGallery)
+
+const languageButton = document.querySelector('.language');
+languageButton.addEventListener('click', () => {
+  changeLanguage();
+})
+
+
+
+function setLanguage(){
+  localStorage.setItem('language', language)
+}
+
+function getLanguage(){
+  language = localStorage.getItem('language')
+  if (!language){
+      language="en"
+  }
+  console.log(language);
+  const mainMenuButton = document.querySelector('.main-menu-button')
+  const galleryButton = document.querySelector('.gallery-button')
+  const startGame = document.querySelector('.start-game')
+  const languageButton = document.querySelector('.language');
+
+  mainMenuButton.textContent = translation[language].header[0]
+  galleryButton.textContent = translation[language].header[1]
+  startGame.textContent = translation[language].mainMenu[0]
+  languageButton.textContent = translation[language].mainMenu[1]
+}
+
+window.addEventListener('beforeunload', setLanguage);
 
 
 function returnToMenu(language) {
@@ -103,7 +130,7 @@ function changeLanguage() {
     languageButton.textContent = 'Поменять язык'
   } else {
     language = 'en'
-    mainMenuButton.textContent = 'Main Menu'
+    mainMenuButton.textContent = 'Main menu'
     galleryButton.textContent = 'Gallery'
     startGame.textContent = 'Start Game'
     languageButton.textContent = 'Change Language'
@@ -148,6 +175,13 @@ function initializeGame(language) {
     return
   }
   currentScore = 5;
+
+  let songsData;
+  if (language === 'en'){
+    songsData = songsDataEn;
+  } else{
+    songsData = songsDataRu;
+  }
 
   main.innerHTML = gameLayout;
 
@@ -331,7 +365,9 @@ function initializeGame(language) {
     descriptionImage.src = songsData[currentGenre][id - 1].image
     descriptionImage.classList.add('description-image')
     description.textContent = songsData[currentGenre][id - 1].description
+    description.style.padding = "6px"
     descriptionWrapper.innerHTML = ''
+    descriptionWrapper.style.fontSize = "0.8em"
     descriptionGenre.textContent = songsData[currentGenre][id - 1].genre
     descriptionName.textContent = songsData[currentGenre][id - 1].game
     descriptionWrapper.appendChild(descriptionImage)

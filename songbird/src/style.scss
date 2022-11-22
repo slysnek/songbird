@@ -95,7 +95,7 @@ main{
 }
 
 .game-description{
-  padding: 20px;
+  padding: 6px;
   width: 45%;
   background-color: $background;
   box-shadow: 0px 4px 3px black;
@@ -335,6 +335,13 @@ footer{
 .description-image{
   height: 200px;
   width: 120px;
+}
+
+.description-player{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hidden-track-name{
