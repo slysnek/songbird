@@ -26,8 +26,12 @@ const mainMenuButton = document.querySelector('.main-menu-button')
 const galleryButton = document.querySelector('.gallery-button')
 const startGame = document.querySelector('.start-game')
 //меню
-startGame.addEventListener('click', initializeGame)
-mainMenuButton.addEventListener('click', returnToMenu)
+startGame.addEventListener('click', ()=>{
+  initializeGame(language)
+})
+mainMenuButton.addEventListener('click', ()=>{
+  returnToMenu(language)
+})
 galleryButton.addEventListener('click', showGallery)
 
 const languageButton = document.querySelector('.language');
@@ -35,13 +39,80 @@ languageButton.addEventListener('click', () => {
   changeLanguage();
 })
 
+const translation = {
+  en: {
+    defaultDescription: 'Listen to the music and choose the game from the list you think the song is from!',
+    header: ['Main menu', 'Gallery'],
+    mainMenu: ['Start Game', 'Change Language'],
+    genres: ['Action', 'Platformers', 'Racing', 'RPG', 'Fighting', 'Sandbox'],
+    score: 'score',
+    congrats: 'Congratulations! Your final score is:',
+    congrats2: 'out of 30',
+    tryAgain: 'Try again?'
+  },
+  rus:{
+    defaultDescription: 'Послушайте музыку и выберите игру из списка, из которого, по вашему мнению, эта песня!',
+    header: ['Главное меню', 'Галерея'],
+    mainMenu: ['Начать игру', 'Поменять язык'],
+    genres: ['Экшен', 'Платформеры', 'Гонки', 'Ролевые', 'Файтинги', 'Песочницы'],
+    score: 'Очки',
+    congrats: 'Поздравляем! Ваш финальный результат:',
+    congrats2: 'из 30',
+    tryAgain: 'Попробовать снова?'
+  } 
+}
+
+
+function returnToMenu(language) {
+  const score = document.querySelector('.score')
+  scoreCounter = 0;
+  currentGenre = -1;
+  if (score) {
+    score.textContent = 0;
+  }
+  main.innerHTML = menu;
+  const mainMenuButton = document.querySelector('.main-menu-button')
+  const galleryButton = document.querySelector('.gallery-button')
+  const startGame = document.querySelector('.start-game')
+  const languageButton = document.querySelector('.language');
+
+  mainMenuButton.textContent = translation[language].header[0]
+  galleryButton.textContent = translation[language].header[1]
+  startGame.textContent = translation[language].mainMenu[0]
+  languageButton.textContent = translation[language].mainMenu[1]
+
+  startGame.addEventListener('click', () => {
+    initializeGame(language)
+  })
+
+  languageButton.addEventListener('click', () => {
+    changeLanguage()
+})
+}
+
 function changeLanguage() {
+  const mainMenuButton = document.querySelector('.main-menu-button')
+  const galleryButton = document.querySelector('.gallery-button')
+  const startGame = document.querySelector('.start-game')
+  const languageButton = document.querySelector('.language');
   if (language === 'en') {
     language = 'rus'
+    mainMenuButton.textContent = 'Главное меню'
+    galleryButton.textContent = 'Галерея'
+    startGame.textContent = 'Начать игру'
+    languageButton.textContent = 'Поменять язык'
   } else {
     language = 'en'
+    mainMenuButton.textContent = 'Main Menu'
+    galleryButton.textContent = 'Gallery'
+    startGame.textContent = 'Start Game'
+    languageButton.textContent = 'Change Language'
   }
-  alert('work in progress! please check this feature later :)')
+  startGame.addEventListener('click', () => {
+    initializeGame(language)
+  })
+  console.log(language);
+/*   alert('work in progress! please check this feature later :)') */
 }
 
 function showGallery(){
@@ -49,28 +120,42 @@ function showGallery(){
 /*   main.innerHTML = ''; */
 }
 
-function displayResults() {
+function displayResults(language) {
   main.innerHTML = results;
   const finalScore = document.querySelector('.final-score')
   const tryAgain = document.querySelector('.try-again')
+  const congrats = document.querySelector('.congrats')
+  const congrats2 = document.querySelector('.congrats2')
+
+  congrats.textContent = translation[language].congrats
+  congrats2.textContent = translation[language].congrats2
+  tryAgain.textContent = translation[language].tryAgain
+
+
   finalScore.textContent = scoreCounter;
   tryAgain.addEventListener('click', () => {
     currentGenre = -1;
     scoreCounter = 0;
-    initializeGame()
+    initializeGame(language)
   })
 }
 
-function initializeGame() {
+function initializeGame(language) {
   isSolved = false
   currentGenre++
   if (currentGenre > 5) {
-    displayResults()
+    displayResults(language)
     return
   }
   currentScore = 5;
 
   main.innerHTML = gameLayout;
+
+  //язык
+  console.log(language);
+  const descriptionWrapper = document.querySelector('.game-description');
+  descriptionWrapper.textContent = translation[language].defaultDescription
+
   const nextLevelButton = document.querySelector('.next-level')
 
   const score = document.querySelector('.score')
@@ -78,6 +163,13 @@ function initializeGame() {
 
   const genreItems = document.querySelectorAll('.genres-list-item');
   genreItems[currentGenre].classList.add('current')
+
+  for (let i = 0; i < genreItems.length; i++) {
+    genreItems[i].textContent = translation[language].genres[i]
+  }
+
+  const scoreName = document.querySelector('.score-name');
+  scoreName.textContent = translation[language].score
 
   nextLevelButton.disabled = true;
 
@@ -332,20 +424,11 @@ function initializeGame() {
     updateTrackTime();
   }
 
-  nextLevelButton.addEventListener('click', initializeGame)
+  nextLevelButton.addEventListener('click', ()=>{
+    initializeGame(language)
+  })
 
 }
 
-function returnToMenu() {
-  const score = document.querySelector('.score')
-  scoreCounter = 0;
-  currentGenre = -1;
-  if (score) {
-    score.textContent = 0;
-  }
-  main.innerHTML = menu;
-  const startGame = document.querySelector('.start-game')
-  startGame.addEventListener('click', initializeGame)
-}
 
 
