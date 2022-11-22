@@ -7,6 +7,7 @@ import gameLayout from "./assets/components/game.html"
 import player from "./assets/components/audioplayer.html"
 import menu from "./assets/components/menu.html"
 import results from "./assets/components/results.html"
+import songsData from "./songs-en";
 
 let scoreCounter = 0;
 let randomTrackNumber;
@@ -57,7 +58,9 @@ startGame.addEventListener('click', ()=>{
 mainMenuButton.addEventListener('click', ()=>{
   returnToMenu(language)
 })
-galleryButton.addEventListener('click', showGallery)
+galleryButton.addEventListener('click', ()=>{
+  showGallery(language)
+})
 
 const languageButton = document.querySelector('.language');
 languageButton.addEventListener('click', () => {
@@ -138,13 +141,121 @@ function changeLanguage() {
   startGame.addEventListener('click', () => {
     initializeGame(language)
   })
-  console.log(language);
-/*   alert('work in progress! please check this feature later :)') */
 }
 
-function showGallery(){
-  alert('work in progress! please check this feature later :)')
-/*   main.innerHTML = ''; */
+function showGallery(language){
+  let songsData;
+  if(language === 'rus'){
+    songsData = songsDataRu
+  } else {
+    songsData = songsDataEn;
+  }
+  let gameCount = -1;
+  main.innerHTML = '';
+  songsData.forEach((genre) => {
+    genre.forEach((game) => {
+      gameCount++
+      const gameWrapper = document.createElement('div')
+
+      const gameName = document.createElement('p')
+      const gameGenre = document.createElement('p')
+      const gameDesc = document.createElement('p')
+      const gameImage = document.createElement('img')
+      const audioplayerWrapper = document.createElement('div')
+
+      gameWrapper.classList.add('game-wrapper')
+
+      audioplayerWrapper.classList.add('description-player')
+      audioplayerWrapper.innerHTML = player
+      gameName.textContent = game.game;
+      gameGenre.textContent = game.genre;
+      gameDesc.textContent = game.description;
+      gameImage.src = game.image;
+
+      main.appendChild(gameWrapper)
+      gameWrapper.appendChild(gameImage)
+      gameWrapper.appendChild(gameName)
+      gameWrapper.appendChild(gameGenre)
+      gameWrapper.appendChild(audioplayerWrapper)
+      gameWrapper.appendChild(gameDesc)
+  
+      //аудиоплеер
+      const audioplayer = document.querySelectorAll('.description-player .audioplayer')[gameCount]
+      const playButton = document.querySelectorAll('.description-player .start-track')[gameCount]
+      const progressBar = document.querySelectorAll('.description-player .progress-bar')[gameCount]
+      const progress = document.querySelectorAll('.description-player .progress')[gameCount]
+      const length = document.querySelectorAll('.description-player .length')[gameCount]
+      const currentTimeDisplay = document.querySelectorAll('.description-player .current-time')[gameCount]
+      const volumeProgressBar = document.querySelectorAll('.description-player .volume-progress-bar')[gameCount]
+      const volumeProgress = document.querySelectorAll('.description-player .volume-progress')[gameCount]
+      const volumeButton = document.querySelectorAll('.description-player .volume-button')[gameCount]
+  
+      let isPlay = false;
+      //показ длительности трека
+      function getAudioLength() {
+        length.textContent = getTimeCode(audioplayer.duration);
+      }
+  
+      //воспроизведение треков
+      function playAudio() {
+        if (isPlay === true) {
+          audioplayer.pause();
+          playButton.classList.remove('pause');
+          playButton.classList.add('play');
+          isPlay = false;
+        } else {
+          isPlay = true;
+          playButton.classList.remove('play');
+          playButton.classList.add('pause');
+          audioplayer.play()
+        }
+      }
+  
+      //обновление времени трека
+      function updateTrackTime() {
+        setInterval(() => {
+          progress.style.width = audioplayer.currentTime / audioplayer.duration * 100 + '%';
+          currentTimeDisplay.textContent = getTimeCode(audioplayer.currentTime)
+        }, 500)
+      }
+      //прогресс бар
+      progressBar.addEventListener("click", el => {
+        const progressBarWidth = window.getComputedStyle(progressBar).width;
+        const timeToSeek = el.offsetX / parseInt(progressBarWidth) * audioplayer.duration;
+        audioplayer.currentTime = timeToSeek;
+        progress.style.width = audioplayer.currentTime / audioplayer.duration * 100 + "%";
+      }, false);
+      //получение тайм-кода
+      function getTimeCode(trackDuration) {
+        let seconds = Math.floor(trackDuration);
+        let minutes = Math.floor(seconds / 60);
+        seconds = seconds - minutes * 60;
+        return `${minutes}:${String(seconds).padStart(2, 0)}`
+      }
+      //обновление звука
+      volumeProgressBar.addEventListener("click", el => {
+        const volumeProgressBarWidth = window.getComputedStyle(volumeProgressBar).width;
+        const newVolume = el.offsetX / parseInt(volumeProgressBarWidth);
+        audioplayer.volume = newVolume;
+        volumeProgress.style.width = newVolume * 100 + '%';
+      })
+      //мьют звука
+      volumeButton.addEventListener("click", () => {
+        audioplayer.muted = !audioplayer.muted;
+        if (audioplayer.muted) {
+          volumeButton.classList.toggle('off')
+        } else {
+          volumeButton.classList.toggle('off')
+        }
+      })
+  
+      audioplayer.addEventListener('loadeddata', getAudioLength)
+      playButton.addEventListener('click', playAudio)
+      audioplayer.src = require(`${game.audio}`)
+      updateTrackTime();
+
+    })
+  })
 }
 
 function displayResults(language) {
