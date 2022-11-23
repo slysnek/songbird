@@ -139,6 +139,7 @@ function changeLanguage() {
     languageButton.textContent = 'Change Language'
   }
   startGame.addEventListener('click', () => {
+    currentGenre = -1;
     initializeGame(language)
   })
 }
@@ -297,7 +298,6 @@ function initializeGame(language) {
   main.innerHTML = gameLayout;
 
   //язык
-  console.log(language);
   const descriptionWrapper = document.querySelector('.game-description');
   descriptionWrapper.textContent = translation[language].defaultDescription
 
